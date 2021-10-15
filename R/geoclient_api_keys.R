@@ -41,7 +41,6 @@
 #' readRenviron("~/.Renviron")
 #'
 #' # You can check them with:
-#' Sys.getenv("GEOCLIENT_APP_ID")
 #' Sys.getenv("GEOCLIENT_APP_KEY")
 #'
 #' }
@@ -50,17 +49,17 @@
 
 # This function was adapted from Kyle Walkerke's amazing tidycensus package
 
-geoclient_api_keys <- function(id, key, overwrite = FALSE, install = FALSE){
+geoclient_api_keys <- function(key, overwrite = FALSE, install = FALSE){
 
   if (!install) {
 
-    if (!is_null(id) && !is_null(key)) {
+    if (!is_null(key)) {
       message("To install your API keys for use in future sessions, run this function with `install = TRUE`.")
       Sys.setenv(GEOCLIENT_APP_KEY = key)
     }
 
-    if (is_null(id) && is_null(key)) {
-      message("Your API ID and key have been unset.")
+    if (is_null(key)) {
+      message("Your API key have been unset.")
       Sys.unsetenv("GEOCLIENT_APP_KEY")
     }
 
