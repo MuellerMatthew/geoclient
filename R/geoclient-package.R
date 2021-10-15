@@ -11,8 +11,7 @@
 #' Portal](https://api-portal.nyc.gov/products/geoclient-user).
 #'
 #' You can acquire your Geoclient Key by first registering with the
-#' [NYC's Developer
-#' Portal](https://api-portal.nyc.gov/) at,
+#' [NYC's Developer Portal](https://api-portal.nyc.gov/),
 #' then [create a new
 #' subscription](https://api-portal.nyc.gov/products/geoclient-user/subscribe), selecting
 #' "Add subscription". For more information on using these
