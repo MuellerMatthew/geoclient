@@ -12,17 +12,17 @@
 #'   bare column name of the bbl field if a dataframe is provided.
 #'
 #' @details For more details see the Geoclient Documentation's guide to
-#'   [making BBL requests](https://api.cityofnewyork.us/geoclient/v1/doc#section-1.2.2),
-#'   interpreting the [Geosupport return codes](https://api.cityofnewyork.us/geoclient/v1/doc#section-2.2), the
-#'   [data returned by `geo_bbl`](https://api.cityofnewyork.us/geoclient/v1/doc#section-3.2),
-#'   and a [complete data dictionary](https://api.cityofnewyork.us/geoclient/v1/doc#section-4.0) for
+#'   [making BBL requests](https://api.nyc.gov/geoclient/v1/doc#section-1.2.2),
+#'   interpreting the [Geosupport return codes](https://api.nyc.gov/geoclient/v1/doc#section-2.2), the
+#'   [data returned by `geo_bbl`](https://api.nyc.gov/geoclient/v1/doc#section-3.2),
+#'   and a [complete data dictionary](https://api.nyc.gov/geoclient/v1/doc#section-4.0) for
 #'   all possible data elements returned by any geoclient function.
 #'
 #' @examples
 #'
 #' \dontrun{
 #'
-#' geoclient_api_keys("1a2b3c4", "9d8f7b6wh4jfgud67s89jfyw68vj38fh")
+#' geoclient_api_keys("9d8f7b6wh4jfgud67s89jfyw68vj38fh")
 #'
 #' geo_bbl(1005430053)
 #'
@@ -42,7 +42,7 @@
 #' @export
 geo_bbl_data <- function(.data, bbl, id = NULL, key = NULL, rate_limit = TRUE) {
 
-  creds <- get_creds(id, key)
+  creds <- get_creds(key)
 
   bbl_inputs <- validate_bbl_inputs(
     bbl = pull_or_null(.data, enquo(bbl))
@@ -55,7 +55,7 @@ geo_bbl_data <- function(.data, bbl, id = NULL, key = NULL, rate_limit = TRUE) {
 #' @export
 geo_bbl <- function(bbl, id = NULL, key = NULL, rate_limit = TRUE) {
 
-  creds <- get_creds(id, key)
+  creds <- get_creds(key)
 
   bbl_inputs <- validate_bbl_inputs(bbl)
 
