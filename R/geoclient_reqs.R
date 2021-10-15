@@ -64,12 +64,15 @@ geoclient_req <- function(..., operation, creds, pb = NULL) {
   if (!is_null(pb) && !pb$finished) pb$tick()
 
   # Build query param list, removing element if NA (eg. address borough/zip)
-  params <- purrr::splice(..., creds) %>% purrr::discard(is_na)
+  params <- purrr::splice(...) %>% purrr::discard(is_na)
 
   resp <- rGET(
     glue::glue("https://api.nyc.gov/geo/geoclient/{operation}.json?"),
     httr::accept_json(),
-    query = params
+    query = params, 
+    "headers":{
+      "Ocp-Apim-Subscription-Key": creds.Key
+    }
   )
 
   print(resp)
