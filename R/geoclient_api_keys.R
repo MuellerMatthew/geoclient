@@ -108,15 +108,15 @@ geoclient_api_keys <- function(key, overwrite = FALSE, install = FALSE){
 
 get_creds <- function(id = NULL, key = NULL) {
 
-  if (is_null(id) && is_null(key)) {
+  if (is_null(key)) {
     key <- Sys.getenv("GEOCLIENT_APP_KEY")
   }
 
-  if (id == "" && key == "") {
+  if (key == "") {
     stop_glue(
       "A Geoclient API key is required.
       Obtain them at https://api-portal.nyc.gov/products/geoclient-user/subscribe",
-      "You can then use `geoclient_api_keys` to store them for future use.
+      "You can then use the `geoclient_api_key` to store for future use.
       See ?geoclient_api_keys for details."
     )
   }
