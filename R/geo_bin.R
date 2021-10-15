@@ -3,7 +3,7 @@
 #' This function takes BINs (Building Identification Number) and returns the
 #' Geoclient response as a tibble. The BINs can be provided either in a vector
 #' as a named argument or with a dataframe and column name of the BIN field. The
-#' Geoclient API's app ID and key can either be provided directly as arguments,
+#' Geoclient API's key can either be provided directly as arguments,
 #' or you can first use [`geoclient_api_keys()`] to add them to your `.Renviron`
 #' file so they can be called securely without being stored in your code.
 #'
@@ -40,7 +40,7 @@
 #'
 #' @name geo_bin
 #' @export
-geo_bin_data <- function(.data, bin, id = NULL, key = NULL, rate_limit = TRUE) {
+geo_bin_data <- function(.data, bin, key = NULL, rate_limit = TRUE) {
 
   creds <- get_creds(key)
 
@@ -53,7 +53,7 @@ geo_bin_data <- function(.data, bin, id = NULL, key = NULL, rate_limit = TRUE) {
 
 #' @rdname geo_bin
 #' @export
-geo_bin <- function(bin, id = NULL, key = NULL, rate_limit = TRUE) {
+geo_bin <- function(bin, key = NULL, rate_limit = TRUE) {
 
   creds <- get_creds(key)
 
