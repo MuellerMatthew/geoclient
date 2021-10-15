@@ -35,12 +35,20 @@ geoclient_reqs <- function(inputs, operation, creds, rate_limit) {
     pb = pb
   )
 
-  inputs_dedup %>%
+  # We know the geocoding results are exactly aligned with the inputs, so safe
+  # to bind cols here
+  results_dedup <- inputs_dedup %>%
     fix_input_names(operation) %>%
-    dplyr::bind_cols(ret) %>%
-    dplyr::right_join(
-      fix_input_names(inputs, operation),
-      by = names(fix_input_names(inputs, operation))
+    dplyr::bind_cols(ret)
+
+  # To make sure all the final results are returned in the exact order as the
+  # inputs we need to start with the full non-deduplicated inputs and left join
+  # on the results.
+  inputs %>%
+    fix_input_names(operation) %>%
+    dplyr::left_join(
+      results_dedup,
+      by = colnames(.)
     ) %>%
     dplyr::mutate(!!"no_results" := replace_na(!!sym("no_results"), TRUE)) # Rows dropped by drop_invalid_rows()
 }
@@ -59,7 +67,7 @@ geoclient_req <- function(..., operation, creds, pb = NULL) {
   params <- purrr::splice(..., creds) %>% purrr::discard(is_na)
 
   resp <- rGET(
-    glue::glue("https://api.cityofnewyork.us/geoclient/v1/{operation}.json?"),
+    glue::glue("https://api.nyc.gov/geo/geoclient/{operation}.json?"),
     httr::accept_json(),
     query = params
   )
