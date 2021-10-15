@@ -72,6 +72,8 @@ geoclient_req <- function(..., operation, creds, pb = NULL) {
     query = params
   )
 
+  print(resp)
+  
  # auth_failed <- try(httr::content(resp)[[1]][[1]] == "Authentication failed", silent = TRUE)
   auth_failed <- try(httr::content(resp)[[1]][[1]] == "Authentication failed")
 
