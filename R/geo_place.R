@@ -4,7 +4,7 @@
 #' Geoclient response as a tibble. The place name, and one of either borough
 #' or Zip code are required. The place components can be provided either in
 #' separate vectors as named arguments or with a dataframe and column names
-#' containing each component. The Geoclient API's app ID and key
+#' containing each component. The Geoclient API's key
 #' can either be provided directly as arguments, or you can first use
 #' [geoclient_api_keys()] to add them to your `.Renviron` file so they can be
 #' called securely without being stored in your code.
@@ -21,17 +21,17 @@
 #'   only required if borough is not provided.
 #'
 #' @details For more details see the Geoclient Documentation's guide to
-#'   [making place requests](https://api.cityofnewyork.us/geoclient/v1/doc#section-1.2.6),
-#'   interpreting the [Geosupport return codes](https://api.cityofnewyork.us/geoclient/v1/doc#section-2.2),
-#'   the [data returned by `geo_place`](https://api.cityofnewyork.us/geoclient/v1/doc#section-3.6),
-#'   and a [complete data dictionary](https://api.cityofnewyork.us/geoclient/v1/doc#section-4.0)
+#'   [making place requests](https://api.nyc.gov/geoclient/v1/doc#section-1.2.6),
+#'   interpreting the [Geosupport return codes](https://api.nyc.gov/geoclient/v1/doc#section-2.2),
+#'   the [data returned by `geo_place`](https://api.nyc.gov/geoclient/v1/doc#section-3.6),
+#'   and a [complete data dictionary](https://api.nyc.gov/geoclient/v1/doc#section-4.0)
 #'   for all possible data elements returned by any geoclient function.
 #'
 #' @examples
 #'
 #' \dontrun{
 #'
-#' geoclient_api_keys("1a2b3c4", "9d8f7b6wh4jfgud67s89jfyw68vj38fh")
+#' geoclient_api_keys("9d8f7b6wh4jfgud67s89jfyw68vj38fh")
 #'
 #' geoclient_place(place = "empire state building", borough = "mn")
 #'
@@ -59,11 +59,10 @@ geo_place_data <- function(.data,
                            place,
                            borough = NULL,
                            zip = NULL,
-                           id = NULL,
                            key = NULL,
                            rate_limit = TRUE) {
 
-  creds <- get_creds(id, key)
+  creds <- get_creds(key)
 
   place_inputs <- validate_place_inputs(
     place = pull_or_null(.data, enquo(place)),
@@ -79,11 +78,10 @@ geo_place_data <- function(.data,
 geo_place <- function(place,
                       borough = NULL,
                       zip = NULL,
-                      id = NULL,
                       key = NULL,
                       rate_limit = TRUE) {
 
-  creds <- get_creds(id, key)
+  creds <- get_creds(key)
 
   place_inputs <- validate_place_inputs(place, borough, zip)
 
