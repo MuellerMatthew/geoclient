@@ -72,8 +72,8 @@ geoclient_req <- function(..., operation, creds, pb = NULL) {
     glue::glue("https://api.nyc.gov/geo/geoclient/{operation}.json?"),
     httr::accept_json(),
     query = params, 
-    "headers":{
-      "Ocp-Apim-Subscription-Key"= c(creds$app_key)
+    "headers"= {
+      "Ocp-Apim-Subscription-Key" = c(creds$app_key)
     }
   )
 
