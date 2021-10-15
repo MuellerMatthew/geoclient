@@ -73,7 +73,7 @@ geoclient_req <- function(..., operation, creds, pb = NULL) {
     httr::accept_json(),
     query = params, 
     "headers":{
-      "Ocp-Apim-Subscription-Key": creds$app_key[1]
+      "Ocp-Apim-Subscription-Key": creds$app_key
     }
   )
 
