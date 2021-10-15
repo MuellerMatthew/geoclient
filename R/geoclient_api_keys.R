@@ -88,7 +88,7 @@ geoclient_api_keys <- function(key, overwrite = FALSE, install = FALSE){
 
   env_no_keys <- purrr::discard(old_env, ~stringr::str_detect(.x, "GEOCLIENT_APP_KEY"))
 
-  if (is_null(id) && is_null(key)) {
+  if (is_null(key)) {
     message("Your API key have been removed from your .Renviron")
     writeLines(env_no_keys, ".Renviron", sep = "\n")
     Sys.unsetenv("GEOCLIENT_APP_KEY")
