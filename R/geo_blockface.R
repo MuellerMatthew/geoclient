@@ -36,18 +36,18 @@
 #' `"S"`, or `"W"`
 #'
 #' @details For more details see the Geoclient Documentation's guide to
-#' [making blockface requests](https://api.cityofnewyork.us/geoclient/v1/doc#section-1.2.4),
+#' [making blockface requests](https://api.nyc.gov/geoclient/v1/doc#section-1.2.4),
 #' interpreting the
-#' [Geosupport return codes](https://api.cityofnewyork.us/geoclient/v1/doc#section-2.2),
-#' the [data returned by `geo_blockface`](https://api.cityofnewyork.us/geoclient/v1/doc#section-3.4),
-#' and a [complete data dictionary](https://api.cityofnewyork.us/geoclient/v1/doc#section-4.0)
+#' [Geosupport return codes](https://api.nyc.gov/geoclient/v1/doc#section-2.2),
+#' the [data returned by `geo_blockface`](https://api.nyc.gov/geoclient/v1/doc#section-3.4),
+#' and a [complete data dictionary](https://api.nyc.gov/geoclient/v1/doc#section-4.0)
 #' for all possible data elements returned by any geoclient function.
 #'
 #' @examples
 #'
 #' \dontrun{
 #'
-#' geoclient_api_keys("1a2b3c4", "9d8f7b6wh4jfgud67s89jfyw68vj38fh")
+#' geoclient_api_keys("9d8f7b6wh4jfgud67s89jfyw68vj38fh")
 #'
 #' geo_blockface(
 #'   on_street = "cypress ave",
@@ -82,11 +82,10 @@ geo_blockface_data <- function(.data,
                                cross_street_1_borough = NULL,
                                cross_street_2_borough = NULL,
                                compass_direction = NULL,
-                               id = NULL,
                                key = NULL,
                                rate_limit = TRUE) {
 
-  creds <- get_creds(id, key)
+  creds <- get_creds(key)
 
   blockface_inputs <- validate_blockface_inputs(
                   on_street = pull_or_null(.data, enquo(on_street)),
@@ -110,11 +109,10 @@ geo_blockface <- function(on_street,
                           cross_street_1_borough = NULL,
                           cross_street_2_borough = NULL,
                           compass_direction = NULL,
-                          id = NULL,
                           key = NULL,
                           rate_limit = TRUE) {
 
-  creds <- get_creds(id, key)
+  creds <- get_creds(key)
 
   blockface_inputs <- validate_blockface_inputs(
     on_street,
