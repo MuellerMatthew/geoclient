@@ -60,6 +60,8 @@ geoclient_reqs <- function(inputs, operation, creds, rate_limit) {
 # Inputs: takes a length-1 vector for each of the API query parameters
 # Returns: API response as a dataframe
 geoclient_req <- function(..., operation, creds, pb = NULL) {
+  
+  print(creds)
 
   if (!is_null(pb) && !pb$finished) pb$tick()
 
@@ -71,7 +73,7 @@ geoclient_req <- function(..., operation, creds, pb = NULL) {
     httr::accept_json(),
     query = params, 
     "headers":{
-      "Ocp-Apim-Subscription-Key": creds.Key
+      "Ocp-Apim-Subscription-Key": creds
     }
   )
 
