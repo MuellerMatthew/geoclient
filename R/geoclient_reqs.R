@@ -60,8 +60,6 @@ geoclient_reqs <- function(inputs, operation, creds, rate_limit) {
 # Inputs: takes a length-1 vector for each of the API query parameters
 # Returns: API response as a dataframe
 geoclient_req <- function(..., operation, creds, pb = NULL) {
-  
-  print(creds$app_key)
 
   if (!is_null(pb) && !pb$finished) pb$tick()
 
@@ -72,13 +70,10 @@ geoclient_req <- function(..., operation, creds, pb = NULL) {
     glue::glue("https://api.nyc.gov/geo/geoclient/v1/{operation}.json?"),
     httr::accept_json(),
     query = params, 
-    add_headers("Ocp-Apim-Subscription-Key" = c(creds$app_key) )
+    add_headers("Ocp-Apim-Subscription-Key" = creds$app_key )
   )
-
-  print(resp)
   
- # auth_failed <- try(httr::content(resp)[[1]][[1]] == "Authentication failed", silent = TRUE)
-  auth_failed <- try(httr::content(resp)[[1]][[1]] == "Authentication failed")
+ auth_failed <- try(httr::content(resp)[[1]][[1]] == "Authentication failed", silent = TRUE)
 
   if (is_true(auth_failed)) {
     stop_glue(
