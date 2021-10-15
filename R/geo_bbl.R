@@ -3,7 +3,7 @@
 #' This function takes BBLs (borough-block-lot) and returns the Geoclient
 #' response as a tibble. The BBLs can be provided either in a vector as a named
 #' argument or with a dataframe and column name of the BBL field. The Geoclient
-#' API's app ID and key can either be provided directly as arguments, or you
+#' API's key can either be provided directly as arguments, or you
 #' can first use [`geoclient_api_keys()`] to add them to your `.Renviron` file
 #' so they can be called securely without being stored in your code.
 #'
@@ -40,7 +40,7 @@
 #'
 #' @name geo_bbl
 #' @export
-geo_bbl_data <- function(.data, bbl, id = NULL, key = NULL, rate_limit = TRUE) {
+geo_bbl_data <- function(.data, bbl, key = NULL, rate_limit = TRUE) {
 
   creds <- get_creds(key)
 
@@ -53,7 +53,7 @@ geo_bbl_data <- function(.data, bbl, id = NULL, key = NULL, rate_limit = TRUE) {
 
 #' @rdname geo_bbl
 #' @export
-geo_bbl <- function(bbl, id = NULL, key = NULL, rate_limit = TRUE) {
+geo_bbl <- function(bbl, key = NULL, rate_limit = TRUE) {
 
   creds <- get_creds(key)
 
