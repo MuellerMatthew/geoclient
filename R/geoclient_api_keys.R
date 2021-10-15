@@ -122,5 +122,5 @@ get_creds <- function(id = NULL, key = NULL) {
     )
   }
 
-  list(app_id = id, app_key = key)
+  list(app_key = key)
 }
