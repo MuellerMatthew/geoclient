@@ -62,6 +62,7 @@ geoclient_reqs <- function(inputs, operation, creds, rate_limit) {
 geoclient_req <- function(..., operation, creds, pb = NULL) {
   
   print(creds)
+  print(creds.$app_key)
 
   if (!is_null(pb) && !pb$finished) pb$tick()
 
