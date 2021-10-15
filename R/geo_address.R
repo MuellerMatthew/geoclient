@@ -24,9 +24,6 @@
 #'   character is accepted) or a bare column name of the borough field if a
 #'   dataframe is provided. The Zip code is only required if borough is not
 #'   provided.
-#' @param id The API app ID provided to you from the NYC Developer Portal
-#'   formated in quotes. Defaults to `NULL` and your key is accessed from your
-#'   `.Renviron`.
 #' @param key The API app key provided to you from the NYC Developer Portal
 #'   formated in quotes. Defaults to `NULL` and your key is accessed from your
 #'   `.Renviron`.
