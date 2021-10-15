@@ -59,7 +59,7 @@ geoclient_req <- function(..., operation, creds, pb = NULL) {
   params <- purrr::splice(..., creds) %>% purrr::discard(is_na)
 
   resp <- rGET(
-    glue::glue("https://api.cityofnewyork.us/geoclient/v1/{operation}.json?"),
+    glue::glue("https://api.nyc.gov/geo/geoclient/{operation}.json?"),
     httr::accept_json(),
     query = params
   )
